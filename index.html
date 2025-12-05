@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encuentra las mejores rutas, consejos y guías para viajar en avión por toda Colombia. Información actualizada sobre aerolíneas y destinos.">
+    <title>Vuelos Colombia - Tu Guía de Viaje Aéreo</title>
+    <style>
+        :root {
+            --primary: #0056b3; /* Azul aerolínea confiable */
+            --secondary: #ffc107; /* Amarillo Colombia */
+            --text: #333333;
+            --light-bg: #f4f6f8;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+        }
+
+        /* --- Header --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .cta-header {
+            background-color: var(--primary);
+            color: var(--white) !important;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=1920&q=80'); /* Imagen genérica de Colombia/Caribe */
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            color: var(--white);
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Search Widget (Simulado) --- */
+        .search-widget {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            justify-content: center;
+        }
+
+        .input-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn-search {
+            background-color: var(--secondary);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            flex: 0 0 auto;
+        }
+
+        .btn-search:hover {
+            background-color: #e0a800;
+        }
+
+        /* --- Value Props & Info --- */
+        .features {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* --- Destinos Populares --- */
+        .destinations {
+            background-color: var(--white);
+            padding: 60px 20px;
+        }
+
+        .dest-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .dest-card {
+            position: relative;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            color: white;
+            cursor: pointer;
+        }
+
+        .dest-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .dest-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .dest-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        }
+
+        /* --- Disclaimer & Footer (CRUCIAL PARA ADS) --- */
+        .disclaimer-section {
+            background-color: #eef2f5;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #999;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #999;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .legal-footer {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; } /* En móvil real deberías poner un menú hamburguesa */
+            .search-widget { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">VuelosCol✈️</a>
+            <nav class="nav-links">
+                <a href="#destinos">Destinos</a>
+                <a href="#info">Guía de Viaje</a>
+                <a href="#contacto">Contacto</a>
+                <a href="#" class="cta-header">Buscar Vuelos</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Descubre Colombia desde el aire</h1>
+            <p>Comparamos información de las principales aerolíneas para que viajes seguro a Bogotá, Medellín, Cartagena y más.</p>
+            
+            <form class="search-widget" action="#" method="GET">
+                <div class="input-group">
+                    <input type="text" placeholder="Origen (ej. Bogotá)" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Destino (ej. San Andrés)" required>
+                </div>
+                <div class="input-group">
+                    <input type="date" required>
+                </div>
+                <button type="submit" class="btn-search">BUSCAR VUELOS</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="info" class="features">
+        <h2>¿Por qué usar nuestra guía de vuelos?</h2>
+        <p style="max-width: 700px; margin: 10px auto; color: #666;">
+            No somos una aerolínea, somos tu aliado informativo. Te ayudamos a entender las temporadas, restricciones de equipaje y mejores rutas en Colombia.
+        </p>
+        
+        <div class="grid-features">
+            <div class="card">
+                <h3>📅 Temporadas Altas</h3>
+                <p>En Colombia, las temporadas altas coinciden con Semana Santa, junio-julio y mediados de diciembre a enero. Recomendamos reservar con 3 semanas de antelación.</p>
+            </div>
+            <div class="card">
+                <h3>🛄 Política de Equipajes</h3>
+                <p>Las aerolíneas low-cost en Colombia (como Wingo o JetSmart) suelen cobrar extra por el equipaje de mano. Revisa siempre la tarifa "XS" vs "M".</p>
+            </div>
+            <div class="card">
+                <h3>✈️ Aerolíneas Locales</h3>
+                <p>Información actualizada sobre rutas de Avianca, LATAM, Clic (antes EasyFly) y Satena para llegar a las regiones más apartadas del país.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="destinos" class="destinations">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2>Destinos Más Buscados</h2>
+            <p>Conecta con las principales ciudades del país.</p>
+        </div>
+        <div class="dest-grid">
+            <div class="dest-card">
+                <img src="https://images.unsplash.com/photo-1590559925232-a7442df2e71d?auto=format&fit=crop&w=400&q=80" alt="Medellín">
+                <div class="dest-info">
+                    <h3>Medellín</h3>
+                    <p>Aeropuerto José María Córdova (MDE)</p>
+                </div>
+            </div>
+            <div class="dest-card">
+                <img src="https://images.unsplash.com/photo-1583531352515-8884af319dc1?auto=format&fit=crop&w=400&q=80" alt="Cartagena">
+                <div class="dest-info">
+                    <h3>Cartagena</h3>
+                    <p>Aeropuerto Rafael Núñez (CTG)</p>
+                </div>
+            </div>
+            <div class="dest-card">
+                <img src="https://images.unsplash.com/photo-1543328859-67991b85461c?auto=format&fit=crop&w=400&q=80" alt="Bogotá">
+                <div class="dest-info">
+                    <h3>Bogotá</h3>
+                    <p>Aeropuerto El Dorado (BOG)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="disclaimer-section">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h4>Transparencia al Usuario</h4>
+            <p><strong>VuelosCol</strong> es un portal informativo y de comparación. No vendemos tiquetes directamente. Al hacer clic en "Buscar", serás redirigido a los sitios oficiales de las aerolíneas o agencias de viaje certificadas donde se procesará tu compra. Los precios mostrados pueden variar según la disponibilidad.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>VuelosCol</h4>
+                <p>Tu plataforma de confianza para encontrar información sobre vuelos nacionales en Colombia.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <div class="footer-links">
+                    <a href="/politica-de-privacidad.html">Política de Privacidad</a>
+                    <a href="/terminos-y-condiciones.html">Términos y Condiciones</a>
+                    <a href="/politica-de-cookies.html">Política de Cookies</a>
+                </div>
+            </div>
+            <div class="footer-col" id="contacto">
+                <h4>Contacto</h4>
+                <p>📍 Calle 123 # 45-67, Edificio Business, Bogotá, Colombia</p>
+                <p>📧 contacto@vueloscol-ejemplo.com</p>
+                <p>📞 +57 601 123 4567</p>
+            </div>
+        </div>
+        <div class="legal-footer">
+            <p>&copy; 2024 VuelosCol. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
